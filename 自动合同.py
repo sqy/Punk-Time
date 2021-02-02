@@ -1,4 +1,4 @@
-import xlrd  # 引入Excel读取模块
+import xlrd  # 引入Excel读取模块（读excel库-xlrd、写excel库-xlwt）
 from mailmerge import MailMerge  # 引用邮件处理模块
 
 def float_to_str(float_value):   #定义浮点转字符函数
@@ -15,12 +15,13 @@ def float_to_str(float_value):   #定义浮点转字符函数
 datafile_path = '合同Test.xlsx'  # 表格位置
 data = xlrd.open_workbook(datafile_path)  # 获取数据
 table = data.sheet_by_name('合同数据（勿动）')  # 表格内工作表
-ncols = table.ncols
+ncols = table.ncols  #定义列数
+nrows = table.nrows  #定义行数
 template = '基础设施项目分包合同（范本）2020自动版.docx'  # 模版位置
 document = MailMerge(template)
 
 for i in range(ncols):  # 循环逐行打印
-  if i > 0:  # 排除0项无用数据
+  if i == 1:  # 选择第2列，即B列
     document = MailMerge(template)
     document.merge(
       项目全称=float_to_str(table.col_values(i)[2]),  # 手填 
