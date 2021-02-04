@@ -12,12 +12,12 @@ def float_to_str(float_value):   #定义浮点转字符函数
         else :                                 #如果值为浮点数
             return str(float_value)            #值转换为字符
       
-datafile_path = '合同Test.xlsx'  # 表格位置
+datafile_path = r'合同Test.xlsx'  # 表格位置
 data = xlrd.open_workbook(datafile_path)  # 获取数据
-table = data.sheet_by_name('合同数据（勿动）')  # 表格内工作表
+table = data.sheet_by_name(r'合同数据（勿动）')  # 表格内工作表
 ncols = table.ncols  #定义列数
 nrows = table.nrows  #定义行数
-template = '基础设施项目分包合同（范本）2020自动版.docx'  # 模版位置
+template = r'模板\基础设施项目分包合同（范本）2020自动版.docx'  # 模版位置
 document = MailMerge(template)
 
 for i in range(ncols):  # 循环逐行打印
